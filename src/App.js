@@ -1,15 +1,59 @@
 // Copyright (C) 2007-2019, GoodData(R) Corporation. All rights reserved.
 
 import React, { Component } from 'react';
+import './App.css';
 import '@gooddata/react-components/styles/css/main.css';
 
 import { ColumnChart } from '@gooddata/react-components';
+import { BarChart } from '@gooddata/react-components';
+import { AreaChart } from '@gooddata/react-components';
+
+
 
 const grossProfitMeasure = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/6877';
 const dateAttributeInMonths = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2142';
 const dateAttribute = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2180';
 
 class App extends Component {
+    constructor(){
+        super ()
+        this.state ={defaultValue:"1", defaultYear:"2015", defaultChart:ColumnChart}
+        this.handleMonth = this.handleMonth.bind(this)
+        this.handleYear =this.handleYear.bind(this)
+        this.handleChart =this.handleChart.bind(this)
+    }
+
+
+    handleMonth(event){
+        const value= event.target.value
+        this.setState({defaultValue: value})
+        
+    }
+
+    handleYear(event){
+        const value =event.target.value
+        this.setState({defaultYear: value})
+    }
+
+    handleChart(event){
+        const value =event.target.value
+        switch (value){
+            case "ColumnChart": 
+                this.setState({defaultChart:ColumnChart});
+                 break;
+            case "BarChart": 
+                this.setState({defaultChart:BarChart});
+                break;
+            case "AreaChart": 
+                this.setState({defaultChart:AreaChart})
+                break;
+
+        }
+       
+
+    }
+
+
 
     getMonthFilter() {
         return {
@@ -17,8 +61,8 @@ class App extends Component {
                 dataSet: {
                     uri: dateAttribute
                 },
-                from: '2016-01-01',
-                to: '2016-01-31'
+                from: this.state.defaultYear +'-' +this.state.defaultValue+'-01',
+                to: this.state.defaultYear + '-' +this.state.defaultValue+'-31'
             }
 
         }
@@ -56,7 +100,7 @@ class App extends Component {
 
     renderDropdown() {
         return (
-            <select defaultValue="1">
+            <select defaultValue={this.state.defaultValue} onChange={this.handleMonth} className="monthSelector">
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -73,25 +117,53 @@ class App extends Component {
         )
     }
 
+
+
+    renderYear() {
+        return (
+            <select defaultYear={this.state.defaultYear} onChange={this.handleYear}>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+            </select>
+        )
+    }
+
+
+    renderChartType() {
+        return (
+            <select defaultYear={this.state.defaultChart} onChange={this.handleChart}>
+                <option value="ColumnChart">Column Chart</option>
+                <option value="BarChart">Bar Chart</option>
+                <option value="AreaChart">Area Chart</option>
+            </select>
+        )
+
+    }
+
+
+
+
     render() {
         const projectId = 'xms7ga4tf3g3nzucd8380o2bev8oeknp';
         const filters = [this.getMonthFilter()];
         const measures = this.getMeasures();
         const viewBy = this.getViewBy();
+     
 
         return (
             <div className="App">
-                <h1>$ Gross Profit in month {this.renderDropdown()} 2016</h1>
-                <div>
-                    <ColumnChart
+                <h1>$ Gross Profit in month {this.renderDropdown()} {this.renderYear()} {this.renderChartType()}</h1>
+                <div className="chart">
+                    <this.state.defaultChart
                         measures={measures}
                         filters={filters}
                         projectId={projectId}
                     />
                 </div>
                 <h1>$ Gross Profit - All months</h1>
-                <div>
-                    <ColumnChart
+                <div className="chart">
+                    <this.state.defaultChart
                         measures={measures}
                         viewBy={viewBy}
                         projectId={projectId}
