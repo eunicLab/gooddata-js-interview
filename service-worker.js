@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/treasure_hunt/precache-manifest.793511a84018674c6a7b057baa90c801.js"
+  "/gooddata-homework/precache-manifest.dbcb6aec8f2f94ca8e2f34226f670cca.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/treasure_hunt/index.html", {
+workbox.routing.registerNavigationRoute("/gooddata-homework/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
