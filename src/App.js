@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import '@gooddata/react-components/styles/css/main.css';
-
 import { ColumnChart } from '@gooddata/react-components';
 import { BarChart } from '@gooddata/react-components';
 import { AreaChart } from '@gooddata/react-components';
@@ -18,24 +17,19 @@ class App extends Component {
     constructor(){
         super ()
         this.state ={defaultValue:"1", defaultYear:"2015", defaultChart:ColumnChart}
-        this.handleMonth = this.handleMonth.bind(this)
-        this.handleYear =this.handleYear.bind(this)
-        this.handleChart =this.handleChart.bind(this)
     }
 
-
-    handleMonth(event){
+    handleMonth = (event) => {
         const value= event.target.value
         this.setState({defaultValue: value})
-        
-    }
-
-    handleYear(event){
+        }
+    
+    handleYear = (event) => {
         const value =event.target.value
         this.setState({defaultYear: value})
     }
 
-    handleChart(event){
+    handleChart = (event) => {
         const value =event.target.value
         switch (value){
             case "ColumnChart": 
@@ -49,11 +43,7 @@ class App extends Component {
                 break;
 
         }
-       
-
     }
-
-
 
     getMonthFilter() {
         return {
@@ -61,8 +51,8 @@ class App extends Component {
                 dataSet: {
                     uri: dateAttribute
                 },
-                from: this.state.defaultYear +'-' +this.state.defaultValue+'-01',
-                to: this.state.defaultYear + '-' +this.state.defaultValue+'-31'
+                from: `${this.state.defaultYear}-${this.state.defaultValue}-01`,
+                to:  `${this.state.defaultYear}-${this.state.defaultValue}-31`
             }
 
         }
@@ -100,7 +90,7 @@ class App extends Component {
 
     renderDropdown() {
         return (
-            <select defaultValue={this.state.defaultValue} onChange={this.handleMonth} className="monthSelector">
+            <select defaultValue={this.state.defaultValue} onChange={this.handleMonth}>
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -117,8 +107,6 @@ class App extends Component {
         )
     }
 
-
-
     renderYear() {
         return (
             <select defaultYear={this.state.defaultYear} onChange={this.handleYear}>
@@ -128,7 +116,6 @@ class App extends Component {
             </select>
         )
     }
-
 
     renderChartType() {
         return (
@@ -141,16 +128,12 @@ class App extends Component {
 
     }
 
-
-
-
     render() {
         const projectId = 'xms7ga4tf3g3nzucd8380o2bev8oeknp';
         const filters = [this.getMonthFilter()];
         const measures = this.getMeasures();
         const viewBy = this.getViewBy();
-     
-
+        
         return (
             <div className="App">
                 <h1>$ Gross Profit in month {this.renderDropdown()} {this.renderYear()} {this.renderChartType()}</h1>
