@@ -2,7 +2,7 @@
 
 .App {
   text-align: center;
-  margin:3%;
+  margin: 3%;
 }
 
 .App-logo {
@@ -25,10 +25,10 @@
   font-size: large;
 }
 
-.chart{
-  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-  background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+.chart {
+  background: -webkit-linear-gradient(bottom, #cccccc, #eeeeee 175px);
+  background: -moz-linear-gradient(bottom, #cccccc, #eeeeee 175px);
+  background: linear-gradient(bottom, #cccccc, #eeeeee 175px);
   margin: auto;
   position: relative;
   width: 80%;
@@ -41,20 +41,22 @@
 }
 
 select {
-
-  cursor: pointer; 
-  border:1px solid black;
-  margin-left:1%;
-  margin-bottom:1%;              
+  cursor: pointer;
+  border: 1px solid black;
+  margin-left: 1%;
+  margin-bottom: 1%;
 }
 
-select:hover{
+select:hover {
   transform: translateY(-0.3rem);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.21);
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
