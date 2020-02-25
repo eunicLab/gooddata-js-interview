@@ -2,7 +2,6 @@
   "name": "gooddata-homework",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://euniclab.github.io/gooddata-js-interview",
   "dependencies": {
     "@gooddata/react-components": "6.2.0",
     "http-proxy-middleware": "0.19.1",
@@ -15,8 +14,6 @@
     "start": "cross-env HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "browserslist": [
