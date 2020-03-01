@@ -23,6 +23,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cross-env": "6.0.3"
+    "cross-env": "6.0.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "react-test-renderer": "^16.13.0"
   }
 }
